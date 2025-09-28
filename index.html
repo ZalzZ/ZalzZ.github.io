@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zalz Dashboard - Link Hub</title>
+    <link rel="icon" type="image/svg+xml" href="logo.jpeg" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a2e;  /* Deep dark blue */
+            --secondary-color: #eee;    /* Clean white */
+            --accent-color: #0f4c75;    /* Ocean blue */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Ornaments */
+        .bg-decoration {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Floating Circles */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .circle1 {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            top: 20%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .circle2 {
+            width: 120px;
+            height: 120px;
+            right: 15%;
+            top: 60%;
+            animation-delay: 5s;
+            animation-duration: 30s;
+        }
+
+        .circle3 {
+            width: 60px;
+            height: 60px;
+            left: 70%;
+            bottom: 20%;
+            animation-delay: 10s;
+            animation-duration: 20s;
+        }
+
+        .circle4 {
+            width: 150px;
+            height: 150px;
+            right: 30%;
+            top: 10%;
+            animation-delay: 15s;
+            animation-duration: 35s;
+        }
+
+        .circle5 {
+            width: 90px;
+            height: 90px;
+            left: 20%;
+            bottom: 30%;
+            animation-delay: 7s;
+            animation-duration: 28s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(10px) rotate(180deg);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translateY(-15px) rotate(270deg);
+                opacity: 0.4;
+            }
+        }
+
+        /* Geometric Shapes */
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0.1;
+        }
+
+        .triangle1 {
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid var(--accent-color);
+            top: 15%;
+            right: 10%;
+            animation: rotate 30s infinite linear;
+        }
+
+        .triangle2 {
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 60px solid var(--secondary-color);
+            bottom: 25%;
+            left: 15%;
+            animation: rotate 25s infinite linear reverse;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Gradient Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.4;
+            animation: pulse 10s infinite ease-in-out;
+        }
+
+        .orb1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(15,76,117,0.8) 0%, transparent 70%);
+            top: -150px;
+            left: -150px;
+        }
+
+        .orb2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(52,152,219,0.6) 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 5s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.6;
+            }
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particle-float 15s infinite linear;
+        }
+
+        .particle1 { left: 10%; animation-delay: 0s; }
+        .particle2 { left: 30%; animation-delay: 3s; }
+        .particle3 { left: 50%; animation-delay: 6s; }
+        .particle4 { left: 70%; animation-delay: 9s; }
+        .particle5 { left: 90%; animation-delay: 12s; }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-section {
+            margin-bottom: 30px;
+        }
+
+        /* Logo Image Style */
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            position: relative;
+            animation: float-logo 3s ease-in-out infinite;
+        }
+
+        @keyframes float-logo {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 80px rgba(15,76,117,0.5);
+            transition: all 0.3s ease;
+            background: var(--secondary-color);
+        }
+
+        .logo-container:hover .logo-img {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 100px rgba(52,152,219,0.6);
+            border-color: var(--accent-color);
+        }
+
+        /* Decorative ring around logo */
+        /*.logo-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 140px;
+            height: 140px;
+            border: 2px dashed rgba(255,255,255,0.2);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }*/
+
+        h1 {
+            color: var(--secondary-color);
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            color: rgba(238, 238, 238, 0.8);
+            font-size: 16px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .social-btn:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+            border-color: var(--accent-color);
+            background: rgba(15,76,117,0.3);
+        }
+
+        .social-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--secondary-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .links-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-item {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 18px 25px;
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .link-item:hover::before {
+            left: 100%;
+        }
+
+        .link-item:hover {
+            background: rgba(15,76,117,0.3);
+            border-color: rgba(52,152,219,0.5);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .link-icon {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .link-item:hover .link-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        footer {
+            margin-top: 40px;
+            color: rgba(238, 238, 238, 0.5);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 24px;
+            }
+            
+            .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .social-buttons {
+                gap: 15px;
+            }
+            
+            .social-btn {
+                width: 45px;
+                height: 45px;
+            }
+
+            .circle1, .circle2, .circle3, .circle4, .circle5 {
+                opacity: 0.3;
+            }
+        }
+
+        /* Loading Animation */
+        .link-item {
+            animation: slideUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .link-item:nth-child(1) { animation-delay: 0.1s; }
+        .link-item:nth-child(2) { animation-delay: 0.2s; }
+        .link-item:nth-child(3) { animation-delay: 0.3s; }
+        .link-item:nth-child(4) { animation-delay: 0.4s; }
+        .link-item:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Background Decorations -->
+    <div class="bg-decoration">
+        <!-- Floating Circles -->
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+        <div class="circle circle4"></div>
+        <div class="circle circle5"></div>
+        
+        <!-- Geometric Shapes -->
+        <div class="triangle triangle1"></div>
+        <div class="triangle triangle2"></div>
+        
+        <!-- Gradient Orbs -->
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        
+        <!-- Floating Particles -->
+        <div class="particle particle1"></div>
+        <div class="particle particle2"></div>
+        <div class="particle particle3"></div>
+        <div class="particle particle4"></div>
+        <div class="particle particle5"></div>
+    </div>
+
+    <div class="container">
+        <div class="profile-section">
+            <!-- Logo with Image -->
+            <div class="logo-container">
+                <div class="logo-ring"></div>
+                <img src="logo.jpeg" alt="Logo" class="logo-img" id="logoImg">
+            </div>
+            
+            <!-- Title -->
+            <h1>Zalz Dashboard</h1>
+            <p class="tagline">✨ All Zalz Development link is here ✨</p>
+            
+            <!-- Social Media Buttons -->
+            <div class="social-buttons">
+                <!-- Instagram -->
+                <a href="https://instagram.com/syhrl04_" target="_blank" class="social-btn" title="Instagram">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                    </svg>
+                </a>
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/6285179758822" target="_blank" class="social-btn" title="WhatsApp">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                </a>
+                
+                <!-- Portfolio -->
+                <a href="https://zalz.my.id" target="_blank" class="social-btn" title="Portfolio">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Links Section -->
+        <div class="links-section">
+            <a href="https://port.zalz.my.id" target="_blank" class="link-item">
+                <span class="link-icon">🌐</span>
+                <span>Zalz Portofolio</span>
+            </a>
+            
+            <a href="https://adwisa.zalz.my.id" target="_blank" class="link-item">
+                <span class="link-icon">📝</span>
+                <span>Adwisa Website</span>
+            </a>
+            
+            <a href="" target="_blank" class="link-item">
+                <span class="link-icon"></span>
+                <span>Coming Soon</span>
+            </a>
+            
+            <a href="https://github.com/ZalzZ" target="_blank" class="link-item">
+                <span class="link-icon">💻</span>
+                <span>GitHub Projects</span>
+            </a>
+            
+            <a href="mailto:zalzdev2@gmail.com" class="link-item">
+                <span class="link-icon">📧</span>
+                <span>Hubungi Saya</span>
+            </a>
+        </div>
+
+        <footer>
+            <p>© 2025 Zalz Development All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        // Parallax effect for background ornaments
+        document.addEventListener('mousemove', (e) => {
+            const circles = document.querySelectorAll('.circle');
+            const triangles = document.querySelectorAll('.triangle');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            circles.forEach((circle, index) => {
+                const speed = (index + 1) * 2;
+                circle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+            
+            triangles.forEach((triangle, index) => {
+                const speed = (index + 1) * 3;
+                triangle.style.transform = `translate(${-x * speed}px, ${-y * speed}px) rotate(${x * 360}deg)`;
+            });
+        });
+
+        // Logo pulse effect on hover
+        const logo = document.getElementById('logoImg');
+        logo.addEventListener('mouseover', function() {
+            this.style.animation = 'pulse 0.5s ease';
+        });
+        
+        logo.addEventListener('animationend', function() {
+            this.style.animation = '';
+        });
+
+        // Create more particles dynamically
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            document.querySelector('.bg-decoration').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 20000);
+        }
+
+        // Generate particles periodically
+        setInterval(createParticle, 3000);
+
+        // Add ripple effect on link click
+        const links = document.querySelectorAll('.link-item');
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                // Add ripple styles dynamically
+                if (!document.querySelector('#ripple-style')) {
+                    const style = document.createElement('style');
+                    style.id = 'ripple-style';
+                    style.textContent = `
+                        .ripple {
+                            position: absolute;
+                            border-radius: 50%;
+                            background: rgba(255, 255, 255, 0.6);
+                            transform: scale(0);
+                            animation: ripple-animation 0.6s ease-out;
+                            pointer-events: none;
+                        }
+                        @keyframes ripple-animation {
+                            to {
+                                transform: scale(4);
+                                opacity: 0;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add typing effect to tagline with sparkles
+        const tagline = document.querySelector('.tagline');
+        const text = tagline.textContent;
+        tagline.textContent = '';
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                tagline.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        
+        // Start typing effect after page load
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 500);
+        });
+
+        // Dynamic greeting based on time
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            const h1 = document.querySelector('h1');
+            let greeting = 'Zalz Dashboard';
+            
+            if (hour >= 5 && hour < 12) {
+                greeting = '☀️ Good Morning';
+            } else if (hour >= 12 && hour < 17) {
+                greeting = '🌤️ Good Afternoon';
+            } else if (hour >= 17 && hour < 21) {
+                greeting = '🌅 Good Evening';
+            } else {
+                greeting = '🌙 Good Night';
+            }
+            
+            // Optional: uncomment to show dynamic greeting
+            // h1.textContent = greeting;
+        }
+        
+        updateGreeting();
+
+        // Add glow effect to social buttons on scroll
+        window.addEventListener('scroll', () => {
+            const socialBtns = document.querySelectorAll('.social-btn');
+            socialBtns.forEach((btn, index) => {
+                setTimeout(() => {
+                    btn.style.boxShadow = '0 0 20px rgba(52, 152, 219, 0.6)';
+                    setTimeout(() => {
+                        btn.style.boxShadow = '';
+                    }, 300);
+                }, index * 100);
+            });
+        });
+
+        // Logo image error handler (if image fails to load)
+        logo.onerror = function() {
+            this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iIzM0OThkYiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TE9HTzwvdGV4dD48L3N2Zz4=';
+        };
+    </script>
+</body>
+</html>
